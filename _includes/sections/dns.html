@@ -662,10 +662,21 @@
 <ul>
   <li>DNS-over-TLS (DoT) - Um protocolo de segurança para DNS encriptado, realizado na porta 853. Alguns provedores também suportam a porta 443, que geralmente funciona em qualquer local, enquanto a porta 853 é comumente bloqueada por firewalls restritivos. DoT tem dois modos:</li>
     <ul>
-        <li>Modo Oportunístico: o cliente tenta estabelecer uma conexão DNS-over-TLS com o servidor na porta 853, sem verificar a validade do certificado de segurança. Se a conexão falhar, DNS não-encriptado será utilizado. <span class="badge badge-warning" data-toggle="tooltip" data-original-title="Em outras palavras este modo deixa seu tráfego DNS vulnerável a SSL Strip e ataques MITM"><i class="fas fa-exclamation-triangle"></i></span></li>
-        <li>Modo Estrito: o cliente se conecta com um hostname específico e verifica a validade do certificado de segurança do mesmo. Se a validação falha, nenhuma requisição DNS é feita até que a mesma ocorra com sucesso.</li>
+        <li>Modo Oportunístico: o cliente tenta estabelecer uma conexão DNS-over-TLS com o servidor na porta 853 sem verificar a validade do certificado de segurança. Se a conexão falhar, DNS não-encriptado será utilizado.
+        {% include badge.html
+        color="warning"
+        icon="fas fa-exclamation-triangle"
+        tooltip="Em outras palavras esse modo deixa seu tráfego DNS vulnerável a SSL Strip e ataques MITM."
+        %}</li>
+        <li>Modo Estrito: o cliente se conecta com um hostname específico e verifica a validade do certificado de segurança do mesmo. Se a validação falha, nenhuma requisição DNS é feita até que a validação seja bem-sucedida.</li>
     </ul>
-  <li>DNS-over-HTTPS (DoH) - Similar ao DoT, mas utilizando HTTPS, com tráfego indistinguível do tráfego HTTPS "normal" na porta 443. <span class="badge badge-warning" data-toggle="tooltip" data-original-title="DoH contém metadados como o user-agent (no qual pode incluir informações do sistema), que são enviados ao servidor DNS."><a href="https://tools.ietf.org/html/rfc8484#section-8.2"><i class="fas fa-exclamation-triangle"></i></a></span></li>
+  <li>DNS-over-HTTPS (DoH) - Similar ao DoT, mas utilizando HTTPS, com tráfego indistinguível do tráfego HTTPS "normal" na porta 443.
+    {% include badge.html
+    color="warning"
+    icon="fas fa-exclamation-triangle"
+    link="https://tools.ietf.org/html/rfc8484#section-8.2"
+    tooltip="DoH contém metadados como o user-agent (no qual pode incluir informações do sistema), que são enviados ao servidor DNS."
+    %}</li>
   <li>DNSCrypt - Um método antigo de encriptar DNS, porém robusto.</li>
 </ul>
 
@@ -674,9 +685,20 @@
 <ul>
   <li>DoH / DoT
     <ul>
-      <li>Verifique no site <a href="https://www.dnsleaktest.com/">DNSLeakTest.com</a>. <span class="badge badge-warning" data-toggle="tooltip" data-placement="bottom" data-original-title="Seu provedors DNS pode não aparecer com seu nome verdadeiro, então compare as respostas com o que você conhece ou possa encontrar a respeito do seu provedor DNS. Apenas lembre-se de verificar que não apareça seu provedor de Internet ou algum provedor DNS não-encriptado antigo seu."><i class="fas fa-exclamation-triangle"></i></span></li>
+      <li>Verifique no site <a href="https://www.dnsleaktest.com/">DNSLeakTest.com</a>.
+        {% include badge.html
+        color="warning"
+        icon="fas fa-exclamation-triangle"
+        tooltip="Seu provedor DNS pode não aparecer com seu nome verdadeiro, então compare as respostas com o que você conhece ou possa encontrar a respeito do seu provedor DNS. Apenas lembre-se de verificar que não apareça seu provedor de Internet ou algum provedor DNS não-encriptado antigo que você já tenha utilizado anteriormente."
+        %}</li>
       <li>Verifique no site do seu provedor DNS. Eles podem ter alguma página que verifica se você está utilizando o DNS deles. Exemplos incluem <a href="https://adguard.com/en/adguard-dns/overview.html">AdGuard</a> e <a href="https://1.1.1.1/help">Cloudflare</a>.</li>
-      <li>Se estiver utilizando o Trusted Recursive Resolver (TRR) do Firefox, navegue até <code>about:networking#dns</code>. Se a coluna TRR estiver como <code>true</code> para alguns campos, você está utilizando DoH. <span class="badge badge-warning" data-toggle="tooltip" data-placement="bottom" data-original-title='Alguns campos irão ter o valor "false" dependendo do valor do atributo network.trr.mode em about:config'><a href="https://wiki.mozilla.org/Trusted_Recursive_Resolver"><i class="fas fa-exclamation-triangle"></i></a></span></li>
+      <li>Se estiver utilizando o Trusted Recursive Resolver (TRR) do Firefox, navegue até <code>about:networking#dns</code>. Se a coluna TRR estiver como <code>true</code> para alguns campos, você está utilizando DoH.
+        {% include badge.html
+        color="warning"
+        icon="fas fa-exclamation-triangle"
+        link="https://wiki.mozilla.org/Trusted_Recursive_Resolver"
+        tooltip="Alguns campos irão ter o valor 'false' dependendo do valor do atributo network.trr.mode em about:config"
+        %}</li>
     </ul>
   </li>
   <li>dnscrypt-proxy - Verifique <a href="https://github.com/jedisct1/dnscrypt-proxy/wiki/Checking">na wiki dnscrypt-proxy a guia de como verificar se sua DNS está encriptada</a> (em Inglês).</li>

@@ -8,7 +8,7 @@ breadcrumb: "DNS"
 
 {% include sections/dns.html %}
 
-<h4>Terms</h4>
+<h4>Termos</h4>
 
 <ul>
   <li>DNS-over-TLS (DoT) - A security protocol for encrypted DNS on a dedicated port 853. Some providers support port 443 which generally works everywhere while port 853 is often blocked by restrictive firewalls. DoT has two modes:</li>
@@ -17,7 +17,7 @@ breadcrumb: "DNS"
         {% include badge.html
         color="warning"
         icon="fas fa-exclamation-triangle"
-        tooltip="In other words automatic mode leaves your DNS traffic vulnerable to SSL strip and MITM attacks."
+        tooltip="Em outras palavras esse modo deixa seu tráfego DNS vulnerável a SSL Strip e ataques MITM."
         %}</li>
         <li>Strict mode: the client connects to a specific hostname and performs certificate validation for it. If it fails, no DNS queries are made until it succeeds.</li>
     </ul>
@@ -26,7 +26,7 @@ breadcrumb: "DNS"
     color="warning"
     icon="fas fa-exclamation-triangle"
     link="https://tools.ietf.org/html/rfc8484#section-8.2"
-    tooltip="DoH contains metadata such as user-agent (which may include system information) that is sent to the DNS server."
+    tooltip="DoH contém metadados como o user-agent (no qual pode incluir informações do sistema), que são enviados ao servidor DNS."
     %}</li>
   <li>DNSCrypt - An older yet robust method of encrypting DNS.</li>
 </ul>
@@ -40,7 +40,7 @@ breadcrumb: "DNS"
         {% include badge.html
         color="warning"
         icon="fas fa-exclamation-triangle"
-        tooltip="Your DNS provider may not appear with their own name, so compare the responses to what you know or can find about your DNS provider. Just ensure you don't see your ISP or old unencrypted DNS provider."
+        tooltip="Seu provedor DNS pode não aparecer com seu nome verdadeiro, então compare as respostas com o que você conhece ou possa encontrar a respeito do seu provedor DNS. Apenas lembre-se de verificar que não apareça seu provedor de Internet ou algum provedor DNS não-encriptado antigo que você já tenha utilizado anteriormente."
         %}</li>
       <li>Check the website of your DNS provider. They may have a page for telling "you are using our DNS." Examples include <a href="https://adguard.com/en/adguard-dns/overview.html">AdGuard</a> and <a href="https://1.1.1.1/help">Cloudflare</a>.</li>
       <li>If using Firefox's trusted recursive resolver (TRR), navigate to <code>about:networking#dns</code>. If the TRR column says "true" for some fields, you are using DoH.
@@ -48,7 +48,7 @@ breadcrumb: "DNS"
         color="warning"
         icon="fas fa-exclamation-triangle"
         link="https://wiki.mozilla.org/Trusted_Recursive_Resolver"
-        tooltip="Some fields will say 'false' depending on the the value of network.trr.mode in about:config"
+        tooltip="Alguns campos irão ter o valor 'false' dependendo do valor do atributo network.trr.mode em about:config"
         %}</li>
     </ul>
   </li>
