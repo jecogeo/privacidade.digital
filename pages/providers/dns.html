@@ -8,42 +8,42 @@ breadcrumb: "DNS"
 
 {% include sections/dns.html %}
 
-<h4>Termos</h4>
+<h4>Glossário</h4>
 
 <ul>
-  <li>DNS-over-TLS (DoT) - A security protocol for encrypted DNS on a dedicated port 853. Some providers support port 443 which generally works everywhere while port 853 is often blocked by restrictive firewalls. DoT has two modes:</li>
+  <li>DNS-over-TLS (DoT) - Um protocolo de segurança para DNS encriptado, realizado na porta 853. Alguns provedores também suportam a porta 443, que geralmente funciona em qualquer local, enquanto a porta 853 é comumente bloqueada por firewalls restritivos. DoT tem dois modos:</li>
     <ul>
-        <li>Oppurtunistic mode: the client attempts to form a DNS-over-TLS connection to the server on port 853 without performing certificate validation. If it fails, it will use unencrypted DNS.
+        <li>Modo Oportunístico: o cliente tenta estabelecer uma conexão DNS-over-TLS com o servidor na porta 853 sem verificar a validade do certificado de segurança. Se a conexão falhar, DNS não-encriptado será utilizado.
         {% include badge.html
         color="warning"
         icon="fas fa-exclamation-triangle"
         tooltip="Em outras palavras esse modo deixa seu tráfego DNS vulnerável a SSL Strip e ataques MITM."
         %}</li>
-        <li>Strict mode: the client connects to a specific hostname and performs certificate validation for it. If it fails, no DNS queries are made until it succeeds.</li>
+        <li>Modo Estrito: o cliente se conecta com um hostname específico e verifica a validade do certificado de segurança do mesmo. Se a validação falha, nenhuma requisição DNS é feita até que a validação seja bem-sucedida.</li>
     </ul>
-  <li>DNS-over-HTTPS (DoH) - Similar to DoT, but uses HTTPS instead, being indistinguishable from "normal" HTTPS traffic on port 443.
+  <li>DNS-over-HTTPS (DoH) - Similar ao DoT, mas utilizando HTTPS, com tráfego indistinguível do tráfego HTTPS "normal" na porta 443.
     {% include badge.html
     color="warning"
     icon="fas fa-exclamation-triangle"
     link="https://tools.ietf.org/html/rfc8484#section-8.2"
     tooltip="DoH contém metadados como o user-agent (no qual pode incluir informações do sistema), que são enviados ao servidor DNS."
     %}</li>
-  <li>DNSCrypt - An older yet robust method of encrypting DNS.</li>
+  <li>DNSCrypt - Um método antigo de encriptar DNS, porém robusto.</li>
 </ul>
 
-<h4>How to verify DNS is encrypted</h4>
+<h4>Como Verificar Se o DNS Está Encriptado</h4>
 
 <ul>
   <li>DoH / DoT
     <ul>
-      <li>Check <a href="https://www.dnsleaktest.com/">DNSLeakTest.com</a>.
+      <li>Verifique no site <a href="https://www.dnsleaktest.com/">DNSLeakTest.com</a> (recurso em Inglês).
         {% include badge.html
         color="warning"
         icon="fas fa-exclamation-triangle"
         tooltip="Seu provedor DNS pode não aparecer com seu nome verdadeiro, então compare as respostas com o que você conhece ou possa encontrar a respeito do seu provedor DNS. Apenas lembre-se de verificar que não apareça seu provedor de Internet ou algum provedor DNS não-encriptado antigo que você já tenha utilizado anteriormente."
         %}</li>
-      <li>Check the website of your DNS provider. They may have a page for telling "you are using our DNS." Examples include <a href="https://adguard.com/en/adguard-dns/overview.html">AdGuard</a> and <a href="https://1.1.1.1/help">Cloudflare</a>.</li>
-      <li>If using Firefox's trusted recursive resolver (TRR), navigate to <code>about:networking#dns</code>. If the TRR column says "true" for some fields, you are using DoH.
+      <li>Verifique no site do seu provedor DNS. Eles podem ter alguma página que verifica se você está utilizando o DNS deles. Exemplos incluem <a href="https://adguard.com/pt_br/adguard-dns/overview.html">AdGuard</a> e <a href="https://1.1.1.1/help">Cloudflare</a> (recurso em Inglês).</li>
+      <li>Se estiver utilizando o Trusted Recursive Resolver (TRR) do Firefox, navegue até <code>about:networking#dns</code>. Se a coluna TRR estiver como <code>true</code> para alguns campos, você está utilizando DoH.
         {% include badge.html
         color="warning"
         icon="fas fa-exclamation-triangle"
@@ -52,77 +52,77 @@ breadcrumb: "DNS"
         %}</li>
     </ul>
   </li>
-  <li>dnscrypt-proxy - Check <a href="https://github.com/jedisct1/dnscrypt-proxy/wiki/Checking">dnscrypt-proxy's wiki on how to verify that your DNS is encrypted</a>.</li>
-  <li>DNSSEC - Check <a href="https://dnssec.vs.uni-due.de/">DNSSEC Resolver Test by Matthäus Wander</a>.</li>
-  <li>QNAME Minimization - Run <code>dig +short txt qnamemintest.internet.nl</code> from the command-line (taken from <a href="https://nlnetlabs.nl/downloads/presentations/unbound_qnamemin_oarc24.pdf">this NLnet Labs presentation</a>). If you are on Windows 10, run <code>Resolve-DnsName -Type TXT -Name qnamemintest.internet.nl</code> from the PowerShell. You should see this display: <code>"HOORAY - QNAME minimisation is enabled on your resolver :)!"</code></li>
+  <li>dnscrypt-proxy - Verifique <a href="https://github.com/jedisct1/dnscrypt-proxy/wiki/Checking">na wiki dnscrypt-proxy a guia de como verificar se sua DNS está encriptada</a> (em Inglês).</li>
+  <li>DNSSEC - Verifique em <a href="https://dnssec.vs.uni-due.de/">DNSSEC Resolver Test por Matthäus Wander</a> (em Inglês).</li>
+  <li>Minimização QNAME - Execute <code>dig +short txt qnamemintest.internet.nl</code> na linha de comando do seu sistema operacional (dica <a href="https://nlnetlabs.nl/downloads/presentations/unbound_qnamemin_oarc24.pdf">desse slide da NLnet Labs</a>, em Inglês). Se você estiver utilizando Windows 10, execute <code>Resolve-DnsName -Type TXT -Name qnamemintest.internet.nl</code> no PowerShell. A seguinte mensagem deve ser retornada: <code>"HOORAY - QNAME minimisation is enabled on your resolver :)!"</code></li>
 </ul>
 
-<h3 id="clients">Software suggestions and Additional Information</h3>
+<h3 id="clientes">Menções Honrosas e Informações Adicionais</h3>
 
 <ul>
-  <li><strong>Encrypted DNS clients for desktop:</strong>
+  <li><strong>Clientes de DNS Encriptado para Computadores de Mesa e Laptops:</strong>
     <ul>
-      <li><em>Firefox</em> comes with built-in DoH support with Cloudflare set as the default resolver, but can be configured to use any DoH resolver.
+      <li><em>Firefox</em> vem com suporte a DoH embutido com Cloudflare selecionado como resolvedor padrão, mas pode ser configurado para utilizar qualquer resolvedor DoH.
         {% include badge.html
         color="warning"
         icon="fas fa-exclamation-triangle"
         link="https://developers.cloudflare.com/1.1.1.1/commitment-to-privacy/privacy-policy/firefox/"
-        tooltip="&quot;Cloudflare has agreed to collect only a limited amount of data about the DNS requests that are sent to the Cloudflare Resolver for Firefox via the Firefox browser.&quot;"
+        tooltip="&quot;Cloudflare concordou em coletar somente uma quantidade limitada de dados sobre as requisições DNS que são enviadas para o resolvedor Cloudflare para Firefox.&quot;"
         %}
-        Currently Mozilla is <a href="https://blog.mozilla.org/futurereleases/2019/07/31/dns-over-https-doh-update-detecting-managed-networks-and-user-choice/">conducting studies</a> before enabling DoH by default for all US-based Firefox users.</li>
+        Atualmente a Mozilla está <a href="https://blog.mozilla.org/futurereleases/2019/07/31/dns-over-https-doh-update-detecting-managed-networks-and-user-choice/">conduzindo estudos</a> antes de habilitar DoH por padrão para todos os usuários Firefox residentes dos EUA.</li>
           <ul>
-              <li>DNS over HTTPS can be enabled in Menu -> Preferences (<code>about:preferences</code>) -> Network Settings -> Enable DNS over HTTPS. Set "Use Provider" to "Custom", and enter your DoH provider's address.</li>
-              <li>Advanced users may enable it in <code>about:config</code> by setting <code>network.trr.custom_uri</code> and <code>network.trr.uri</code> as the address you find from the documentation of your DoH provider and <code>network.trr.mode</code> as <code>2</code>. It may also be desirable to set <code>network.security.esni.enabled</code> to <code>True</code> in order to enable encrypted SNI and make sites supporting ESNI a bit more difficult to track.</li>
+              <li>DNS-over-HTTPS pode ser habilitado em Menu -> Preferências (<code>about:preferences</code>) -> Configurações de rede -> Ativar DNS sobre HTTPS. Em "Usar provedor" selecione "Personalizado", e digite o endereço do seu provedor DoH.</li>
+              <li>Usuários avançados podem habilitar a configuração em <code>about:config</code> ao mudar os valores de <code>network.trr.custom_uri</code> e <code>network.trr.uri</code> para o endereço que você encontrar na documentação do seu provedor DoH e o valor de <code>network.trr.mode</code> para <code>2</code>. Também pode ser vantajoso mudar o valor de <code>network.security.esni.enabled</code> para <code>True</code>, de forma que habilita SNI encriptado e faça sites que suportam ESNI um pouco mais difíceis de rastrear.</li>
           </ul>
     </ul>
   </li>
-  <li><strong>Encrypted DNS clients for mobile:</strong>
+  <li><strong>Clientes de DNS Encriptado para Dispositivos Móveis:</strong>
     <ul>
-      <li><em>Android 9</em> comes with a DoT client by <a href="https://support.google.com/android/answer/9089903">default</a>.
+      <li><em>Android 9</em> já inclui um cliente DoT embutido <a href="https://support.google.com/android/answer/9654714?hl=pt-BR">por padrão</a>.
         {% include badge.html
         color="warning"
         icon="fas fa-exclamation-triangle"
         link="https://www.quad9.net/private-dns-quad9-android9/"
-        tooltip="...but with some caveats"
+        tooltip="...mas com algumas desvantagens (recurso em Inglês)"
         %}</li>
         <ul>
-          <li>We recommend selecting <em>Private DNS provider hostname</em> and entering the DoT address from documentation of your DoT provider to enable strict mode (see Terms above).
+          <li>Nós recomendamos selecionar <em>Nome do host do provedor de DNS particular</em> e digitar o endereço DoT da documentação do seu provedor DoT para habilitar o modo estrito (ver termos acima).
             {% include badge.html
             color="warning"
             icon="fas fa-exclamation-triangle"
-            tooltip="If you are on a network blocking access to port 853, Android will error about the network not having internet connectivity."
+            tooltip="Se você estiver numa rede que bloqueia o acesso à porta 853, o Android mostrará um erro sobre a rede não ter conexão à Internet."
             %}</li>
         </ul>
-      <li><em><a href="https://apps.apple.com/app/id1452162351">DNSCloak</a></em> - An <a href="https://github.com/s-s/dnscloak">open-source</a> DNSCrypt and DoH client for iOS by <td><a data-toggle="tooltip" data-placement="bottom" data-original-title='"A charitable non-profit host organization for international Free Software projects."' href="https://techcultivation.org/">the Center for the Cultivation of Technology gemeinnuetzige GmbH</a>.</li>
-      <li><em><a href="https://git.frostnerd.com/PublicAndroidApps/smokescreen/blob/master/README.md">Nebulo</a></em> - An open-source application for Android supporting DoH and DoT. It also supports caching DNS responses and locally logging DNS queries.</li>
+      <li><em><a href="https://apps.apple.com/app/id1452162351">DNSCloak</a></em> - Um cliente DNSCrypt e DoH com <a href="https://github.com/s-s/dnscloak">código-fonte aberto</a> para iOS por <td><a data-toggle="tooltip" data-placement="bottom" data-original-title='"Organização de hospedagem sem fins lucrativos e de caridade para projetos internacionais de Software Livre."' href="https://techcultivation.org/">Center for the Cultivation of Technology gemeinnuetzige GmbH</a>.</li>
+      <li><em><a href="https://git.frostnerd.com/PublicAndroidApps/smokescreen/blob/master/README.md">Nebulo</a></em> - Um aplicativo Android com código-fonte aberto que suporta DoH e DoT. Também suporta cachê para respostas DNS e salvar logs de registro locais para requisições DNS.</li>
     </ul>
   </li>
-  <li><strong>Local DNS servers:</strong>
+  <li><strong>Servidores DNS locais:</strong>
     <ul>
-      <li><em><a href="https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Daemon+-+Stubby">Stubby</a></em> - An open-source application for Linux, macOS, and Windows that acts as a local DNS Privacy stub resolver using DoT.</li>
-      <li><em><a href="https://nlnetlabs.nl/projects/unbound/about/">Unbound</a></em> - a validating, recursive, caching DNS resolver. It can also be ran network-wide and has supported DNS-over-TLS since version 1.7.3.</li>
+      <li><em><a href="https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Daemon+-+Stubby">Stubby</a></em> - Um programa com código-fonte aberto para Linux, macOS, e Windows que age como um resolvedor DNS local usando DoT.</li>
+      <li><em><a href="https://nlnetlabs.nl/projects/unbound/about/">Unbound</a></em> - Um resolvedor DNS com validação, cache e recursividade. Também pode ser rodado na rede local e tem suporte para DNS-over-TLS desde a versão 1.7.3.</li>
       <ul>
-          <li>See also <a href="https://www.ctrl.blog/entry/unbound-tls-forwarding.html">Actually secure DNS over TLS in Unbound on ctrl.blog</a>.</li>
+          <li>Veja também <a href="https://www.ctrl.blog/entry/unbound-tls-forwarding.html">Actually secure DNS over TLS in Unbound on ctrl.blog</a> (em Inglês).</li>
       </ul>
     </ul>
   </li>
-  <li><strong>Network wide DNS servers:</strong>
+  <li><strong>Servidores DNS para Redes:</strong>
     <ul>
-      <li><em><a href="https://pi-hole.net/">Pi-hole</a></em> - A network-wide DNS server mainly for the Raspberry Pi. Blocks ads, tracking, and malicious domains for all devices on your network.</li>
-      <li><em><a href="https://gitlab.com/quidsup/notrack">NoTrack</a></em> - A network-wide DNS server like Pi-hole for blocking ads, tracking, and malicious domains.</li>
+      <li><em><a href="https://pi-hole.net/">Pi-hole</a></em> - Um servidor DNS para redes criado principalmente para o Raspberry Pi. Bloqueia anúncios, rastreadores, e domínios maliciosos para todos os dispositivos da sua rede.</li>
+      <li><em><a href="https://gitlab.com/quidsup/notrack">NoTrack</a></em> - Um servidor DNS para redes parecido com o Pi-hole para bloquear anúncios, rastreadores, e domínios maliciosos.</li>
     </ul>
   </li>
-  <li><strong>Further reading:</strong>
+  <li><strong>Mais leituras (em Inglês):</strong>
     <ul>
-      <li>On Firefox, DoH and ESNI</li>
+      <li>Sobre Firefox, DoH e ESNI</li>
           <ul>
               <li><a href="https://wiki.mozilla.org/Trusted_Recursive_Resolver">Trusted Recursive Resolver (DoH) on MozillaWiki</a></li>
               <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1500289">Firefox bug report requesting the ability to use ESNI without DoH</a></li>
               <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1542754">Firefox bug report requesting the ability to use Android 9+'s Private DNS (DoT) and benefit from encrypted SNI without having to enable DoH</a></li>
               <li><a href="https://blog.cloudflare.com/encrypted-sni/">Encrypt it or lose it: how encrypted SNI works on Cloudflare blog</a></li>
           </ul>
-      <li><a href="https://www.isc.org/blogs/qname-minimization-and-privacy/">QNAME Minimization and Your Privacy</a> by the Internet Systems Consortium (ISC)</li>
-      <li><a href="https://www.isc.org/dnssec/">DNSSEC and BIND 9</a> by the ISC</li>
+      <li><a href="https://www.isc.org/blogs/qname-minimization-and-privacy/">QNAME Minimization and Your Privacy</a> por Internet Systems Consortium (ISC)</li>
+      <li><a href="https://www.isc.org/dnssec/">DNSSEC and BIND 9</a> por ISC</li>
     </ul>
   </li>
 </ul>
